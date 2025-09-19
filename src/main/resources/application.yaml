@@ -10,7 +10,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: validate   # dont auto-drop/create, rely on Liquibase
+      ddl-auto: update   # dont auto-drop/create, rely on Liquibase
     show-sql: true
     properties:
       hibernate:
