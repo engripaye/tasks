@@ -9,6 +9,6 @@ import java.util.Optional;
 
 public interface TodoRepository extends JpaRepository<Todo, Long> {
 
-    List<TodoRepository> findByOwnerOrderByCreatedAtDesc(User owner);
-    Optional<TodoRepository> findByIdAndOwner(Long id, User owner);
+    List<Todo> findByOwnerOrderByCreatedAtDesc(User owner);
+    Optional<Todo> findByIdAndOwner(Long id, User owner);
 }
