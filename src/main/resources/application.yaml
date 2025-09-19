@@ -1,23 +1,24 @@
+server:
+  port: ${PORT:8080}   # Render provides PORT dynamically
+
 spring:
   datasource:
-    url: ${JDBC_DATABASE_URL:jdbc:postgresql://localhost:5432/tododb}
-    username: ${JDBC_DATABASE_USERNAME:postgres}
-    password: ${JDBC_DATABASE_PASSWORD:password}
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver
+
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: validate   # dont auto-drop/create, rely on Liquibase
+    show-sql: true
     properties:
       hibernate:
         format_sql: true
-    show-sql: false
+
   liquibase:
-    enabled: true
     change-log: classpath:db/changelog/db.changelog-master.xml
 
-server:
-  port: ${PORT:8080}
-
 jwt:
-  secret: ${JWT_SECRET:change_this_to_a_long_secret_at_deploy_time}
-  expiration-ms: 86400000
+  secret: ${JWT_SECRET}
+  expiration: 86400000  # 1 day in ms
