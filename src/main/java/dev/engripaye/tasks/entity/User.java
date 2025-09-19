@@ -14,12 +14,17 @@ public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false, unique = true)
     private String email;
+
     @Column(nullable = false)
     private String passwordHash;
-    @OneToMany(mappedBy = "ownner", cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Todo> todos = new ArrayList<>();
+
+    public User() {}
 
     public User(Long id, String email, String passwordHash, List<Todo> todos) {
         this.id = id;
@@ -28,9 +33,9 @@ public class User {
         this.todos = todos;
     }
 
-    public User() {}
-
     public User(String email, String encode) {
+        this.email = email;
+        this.passwordHash = encode;
     }
 
     public Long getId() {
