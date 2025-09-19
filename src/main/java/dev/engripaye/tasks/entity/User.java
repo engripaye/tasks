@@ -17,18 +17,21 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
     @Column(nullable = false)
-    private String password;
+    private String passwordHash;
     @OneToMany(mappedBy = "ownner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Todo> todos = new ArrayList<>();
 
-    public User(Long id, String email, String password, List<Todo> todos) {
+    public User(Long id, String email, String passwordHash, List<Todo> todos) {
         this.id = id;
         this.email = email;
-        this.password = password;
+        this.passwordHash = passwordHash;
         this.todos = todos;
     }
 
     public User() {}
+
+    public User(String email, String encode) {
+    }
 
     public Long getId() {
         return id;
@@ -46,12 +49,12 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 
     public List<Todo> getTodos() {
