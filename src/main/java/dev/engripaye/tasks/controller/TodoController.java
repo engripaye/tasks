@@ -1,7 +1,6 @@
 package dev.engripaye.tasks.controller;
 
 import dev.engripaye.tasks.dtos.TodoDto;
-import dev.engripaye.tasks.entity.Todo;
 import dev.engripaye.tasks.entity.User;
 import dev.engripaye.tasks.service.TodoService;
 import org.springframework.http.ResponseEntity;
